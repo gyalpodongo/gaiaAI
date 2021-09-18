@@ -9,6 +9,10 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+/node_modules
+/.vscode
+.DS_Store
+
 
 # Package Files #
 *.jar
