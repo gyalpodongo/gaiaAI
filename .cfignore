@@ -1,0 +1,5 @@
+coverage/
+reports/
+bin/logs/
+node_modules/
+src/
