@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import Button from '@material-ui/core/Button';
 
-const MapContainer = ({ array, isAdding, getLocation }) => {
+const MapContainer = ({ array, isAdding }) => {
 
   const [ selected, setSelected ] = useState({});
   const [ currentPosition, setCurrentPosition ] = useState({});
+  const [ currentAdress, setCurrentAdress] = useState({});
 
   const markerRef = useRef(null);
 
   const defaultCenter = {
-    lat: 41.3851, lng: 2.1734
+    lat: 42.3601, lng: -71.0589
   }
 
   const onSelect = item => {
@@ -18,6 +19,7 @@ const MapContainer = ({ array, isAdding, getLocation }) => {
   }
 
   const success = (position) => {
+    console.log(position);
     const latitude  = position.coords.latitude;
     const longitude = position.coords.longitude;
     const currentPosition = {
@@ -28,6 +30,7 @@ const MapContainer = ({ array, isAdding, getLocation }) => {
   }
 
   const onMarkerDragEnd = (e) => {
+    console.log(e);
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     setCurrentPosition({ lat, lng})
@@ -43,7 +46,20 @@ const MapContainer = ({ array, isAdding, getLocation }) => {
       </div>
     </div>
   );
-
+  const getLocation = (position)=>{
+    const latlng = new window.google.maps.LatLng(position.lat, position.lng)
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode({ 'latLng': latlng },  (results, status) =>{
+        if (status !== window.google.maps.GeocoderStatus.OK) {
+            alert(status);
+        }
+        // This is checking to see if the Geoeode Status is OK before proceeding
+        if (status == window.google.maps.GeocoderStatus.OK) {
+            console.log(results);
+            var address = (results[0].formatted_address);
+        }
+    });
+  }
   const mapStyles = () => {
     if (!isAdding) {
       return {
@@ -76,49 +92,18 @@ const MapContainer = ({ array, isAdding, getLocation }) => {
           draggable={true}
           zoom={13}
           center={currentPosition.lat ? currentPosition : defaultCenter}
-        >
-          {
-            array ?
-            array.map(item => {
-              return (
-              <Marker 
-              key={item.id}
-              position={item.location}
-              onClick={() => onSelect(item)}
-              />
-              )
-            }) : null
-          }
-          {
-            isAdding ? 
-            <Marker
-            position={currentPosition}
+        > 
+        <Marker
+            position={currentPosition.lat ? currentPosition : defaultCenter}
             ref={() => markerRef}
             onDragEnd={(e) => onMarkerDragEnd(e)}
-            draggable={true} /> :
-            null
-          }
-          {
-            selected.location ?
-            (
-              <InfoWindow
-              position={selected.location}
-              onCloseClick={() => setSelected({})}
-            >
-              <div className="infowindow">
-                <p>{selected.title}</p>
-                <img src={selected.image} className="small-image" alt="rental"/>
-                <p>price: {selected.price}</p>
-                <p>sqm2: {selected.sqm}</p>
-                <p>bedrooms: {selected.bedrooms}</p>
-              </div>
-            </InfoWindow>
-            ) : null
-          }
+            draggable={true} />
+          
         </GoogleMap>
+    
       </LoadScript>
       {
-        isAdding ?
+        true ?
         footer :
         null
       }

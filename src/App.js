@@ -7,20 +7,6 @@ import './App.css';
 import MapContainer from './features/map/GoogleMap';
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="App">
-      <header>
-        <h1>
-          Gaia AI
-        </h1>
-      </header>
-      <body>
-        <h4>Welcome to Gaia AI</h4>
-        <p>Select the area of the world where you want to grow crops</p>
-        <MapChart></MapChart>
-        <MapContainer></MapContainer>
-      </body>
-=======
     <React.Fragment>
       
       
@@ -33,11 +19,12 @@ function App() {
               </Route>
               <Route path="/map" exact>
                   <MapChart />
+                  <MapContainer></MapContainer>
               </Route>
           </Switch>
           </div>
         </Router>
->>>>>>> 13ed2845c5f6804bf62b99792943bfe757d24396
+        
       <footer>
 
       </footer>
