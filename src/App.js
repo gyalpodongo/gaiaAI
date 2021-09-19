@@ -2,7 +2,7 @@ import React from 'react';
 import {Navbar,Nav, Container, Button, NavDropdown} from "react-bootstrap"
 import MapChart from "./features/map/MapChart"
 import './App.css';
-
+import MapContainer from './features/map/GoogleMap';
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
         <h4>Welcome to Gaia AI</h4>
         <p>Select the area of the world where you want to grow crops</p>
         <MapChart></MapChart>
+        <MapContainer></MapContainer>
       </body>
       <footer>
 
