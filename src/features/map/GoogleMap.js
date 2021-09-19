@@ -6,9 +6,9 @@ import { flexbox } from '@material-ui/system';
 
 const MapContainer = ({ array, isAdding }) => {
 
-  const [ selected, setSelected ] = useState(false);
+  const [ selected, setSelected ] = useState();
   const [ currentPosition, setCurrentPosition ] = useState({});
-  const [ currentAdress, setCurrentAdress] = useState({});
+  const [ currentAdrress, setCurrentAdress] = useState({});
 
   const markerRef = useRef(null);
 
@@ -60,11 +60,24 @@ const MapContainer = ({ array, isAdding }) => {
             try{
             setSelected(true);
             console.log(results);
-            var address = (results[0].formatted_address);
-            let state = results[0].address_components[5].short_name
+            var address = (results[2].formatted_address);
+            let short_county;
+            let state;
+            let i = 0 ;
+            for(let data of results[0].address_components){
+                console.log(data);
+                i+=1;
+                if(data.long_name.includes("County")){
+                    let county = data.short_name
+                    short_county = county.substring(0,county.lastIndexOf(" "));
+                    state = results[0].address_components[i].short_name
+                }
+                
+            }
+            
             console.log(state)
-            let county = results[0].address_components[4].short_name
-            let short_county = county.substring(0,county.lastIndexOf(" "));
+            
+           
             console.log(short_county)
             setCurrentAdress({"state":state,"county":short_county});
             
@@ -113,8 +126,6 @@ const MapContainer = ({ array, isAdding }) => {
             ref={() => markerRef}
             onDragEnd={(e) => onMarkerDragEnd(e)}
             draggable={true} />
-          
-        </GoogleMap>
         {
             selected?
             (
@@ -123,15 +134,17 @@ const MapContainer = ({ array, isAdding }) => {
               onCloseClick={() => setSelected(false)}
             >
               <div className="infowindow">
-                <p>{"Data"}</p>
+                <p>{"Information"}</p>
                 {/* <img src={selected.image} className="small-image" alt="rental"/> */}
-                <p>Date: {"Data"}</p>
-                {/* <p>sqm2: {selected.sqm}</p> */}
+                <p>State: {currentAdrress.state}</p>
+                <p>County: {currentAdrress.county}</p>
                 {/* <p>bedrooms: {selected.bedrooms}</p> */}
               </div>
             </InfoWindow>
             ) : null
           }
+        </GoogleMap>
+        
       </LoadScript>
       {footer}
       
