@@ -24,7 +24,7 @@ const Navbar = () => {
                   <Link to="/map">Map</Link>
               </Button>
               <Button  >
-                  <Link to="/map">About Us</Link>
+                  <Link to="/">About Us</Link>
               </Button>
             {/*<Dropdown className={"signout-icon"}>
               <Dropdown.Toggle

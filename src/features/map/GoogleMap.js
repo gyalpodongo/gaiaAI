@@ -79,7 +79,7 @@ const MapContainer = ({ array, isAdding }) => {
             
            
             console.log(short_county)
-            setCurrentAdress({"state":state,"county":short_county});
+            setCurrentAdress({"state":state,"county":short_county, "year":2021});
             
             console.log(selected);
             }
@@ -109,7 +109,7 @@ const MapContainer = ({ array, isAdding }) => {
  
      return (
     <>
-    <p>**This only works for the us**</p>
+    <p>**This currently only works for the us**</p>
       <LoadScript
         id="script-loader"
         googleMapsApiKey="AIzaSyA9qncsDnocysjsJLjZMFxwG_MyXD79vXQ"

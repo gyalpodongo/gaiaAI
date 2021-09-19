@@ -21,6 +21,7 @@ function App() {
                   {/* <MapChart /> */}
                   <MapContainer></MapContainer>
               </Route>
+
           </Switch>
           </div>
         </Router>

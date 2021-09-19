@@ -21,3 +21,10 @@
     font-family: system-ui, sans-serif;
     font-size: 1.25rem;
   }
+  
+.paragraph{
+  margin: 5em;
+}
+.picure{
+  max-width: 30px;
+}
