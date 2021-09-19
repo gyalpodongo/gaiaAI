@@ -5,6 +5,7 @@ import {Dropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import "./Navbar.css"
 import Sidebar from "./Sidebar";
+import Button from '@material-ui/core/Button';
 
 const Navbar = () => {
     const [sidebar,setSidebar] = useState(false);
@@ -19,7 +20,12 @@ const Navbar = () => {
                 
             </div>
             <div className="signout">
-                <Link to="/map">Map</Link>
+                <Button  >
+                  <Link to="/map">Map</Link>
+                </Button>
+                <Button  >
+                  <Link to="/map">About Us</Link>
+                </Button>
             {/*<Dropdown className={"signout-icon"}>
               <Dropdown.Toggle
                 id="dropdown-basic"

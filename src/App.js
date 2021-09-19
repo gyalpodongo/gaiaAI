@@ -18,7 +18,7 @@ function App() {
                   <About />
               </Route>
               <Route path="/map" exact>
-                  <MapChart />
+                  {/* <MapChart /> */}
                   <MapContainer></MapContainer>
               </Route>
           </Switch>

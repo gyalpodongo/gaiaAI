@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api';
 import Button from '@material-ui/core/Button';
+import MapChart from './MapChart';
+import { flexbox } from '@material-ui/system';
 
 const MapContainer = ({ array, isAdding }) => {
 
-  const [ selected, setSelected ] = useState({});
+  const [ selected, setSelected ] = useState(false);
   const [ currentPosition, setCurrentPosition ] = useState({});
   const [ currentAdress, setCurrentAdress] = useState({});
 
   const markerRef = useRef(null);
 
   const defaultCenter = {
-    lat: 42.3601, lng: -71.0589
+    lat: 32.7767, lng: -96.7970
   }
 
   const onSelect = item => {
@@ -37,51 +39,62 @@ const MapContainer = ({ array, isAdding }) => {
   };
 
   const footer = (
-    <div className="footer">
+    
       <div className="inner-footer">
-      <span className="location-text">Choose location and press</span>
+      <span className="location-text">Choose location and Calculate</span>
       <Button variant="contained" color="primary" onClick={() => getLocation(currentPosition)}>
-        Next
+        Calculate
       </Button>
       </div>
-    </div>
+    
   );
   const getLocation = (position)=>{
     const latlng = new window.google.maps.LatLng(position.lat, position.lng)
     const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ 'latLng': latlng },  (results, status) =>{
         if (status !== window.google.maps.GeocoderStatus.OK) {
-            alert(status);
+            alert(status+"Please Zoom In");
         }
         // This is checking to see if the Geoeode Status is OK before proceeding
         if (status == window.google.maps.GeocoderStatus.OK) {
+            try{
             console.log(results);
             var address = (results[0].formatted_address);
+            let state = results[0].address_components[5].short_name
+            console.log(state)
+            let county = results[0].address_components[4].short_name
+            let short_county = county.substring(0,county.lastIndexOf(" "));
+            console.log(short_county)
+            setCurrentAdress({"state":state,"county":short_county});
+            setSelected(true);
+            }
+            catch(e){
+                alert("not valid input click a place in the US");
+            }
+
         }
     });
   }
   const mapStyles = () => {
-    if (!isAdding) {
+    
       return {
-        marginTop: "-20px",
-        height: "100vh",
-        width: "100%"
+       
+
+        marginTop: "3em",
+        marginLeft: "25%",
+        height: "50vh",
+        width: "50%"
       }
-    } else {
-      return {
-        marginTop: "-20px",
-        height: "80vh",
-        width: "100%"
-      }
-    }
+    
   }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   })
-
+ 
      return (
     <>
+    <p>**This only works for the us**</p>
       <LoadScript
         id="script-loader"
         googleMapsApiKey="AIzaSyA9qncsDnocysjsJLjZMFxwG_MyXD79vXQ"
@@ -90,7 +103,7 @@ const MapContainer = ({ array, isAdding }) => {
           id='example-map'
           mapContainerStyle={mapStyles()}
           draggable={true}
-          zoom={13}
+          zoom={3}
           center={currentPosition.lat ? currentPosition : defaultCenter}
         > 
         <Marker
@@ -100,13 +113,26 @@ const MapContainer = ({ array, isAdding }) => {
             draggable={true} />
           
         </GoogleMap>
-    
+        {
+            selected?
+            (
+              <InfoWindow
+              position={currentPosition}
+              onCloseClick={() => setSelected(false)}
+            >
+              <div className="infowindow">
+                <p>{"Data"}</p>
+                {/* <img src={selected.image} className="small-image" alt="rental"/> */}
+                <p>Date: {"Data"}</p>
+                {/* <p>sqm2: {selected.sqm}</p> */}
+                {/* <p>bedrooms: {selected.bedrooms}</p> */}
+              </div>
+            </InfoWindow>
+            ) : null
+          }
       </LoadScript>
-      {
-        true ?
-        footer :
-        null
-      }
+      {footer}
+      
     </>
      )
   }
