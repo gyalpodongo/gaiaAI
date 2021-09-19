@@ -4,7 +4,7 @@ import _ from "lodash";
 import {Dropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import "./Navbar.css"
-import Sidebar from "./Sidebar";
+
 import Button from '@material-ui/core/Button';
 
 const Navbar = () => {
@@ -13,19 +13,19 @@ const Navbar = () => {
     return(
         <>
         <div className="navbar honestBgColor">
-            <div>
+            {/*<div>
                 <a href="#" className="menu-bars">
                     <FaIcons.FaBars className="bar" size={25} onClick={handleSidebar}/>
                 </a>
                 
-            </div>
-            <div className="signout">
-                <Button  >
+            </div>*/}
+            <div className="menu-bars">
+            <Button  >
                   <Link to="/map">Map</Link>
-                </Button>
-                <Button  >
+              </Button>
+              <Button  >
                   <Link to="/map">About Us</Link>
-                </Button>
+              </Button>
             {/*<Dropdown className={"signout-icon"}>
               <Dropdown.Toggle
                 id="dropdown-basic"
@@ -61,7 +61,6 @@ const Navbar = () => {
 
             </Dropdown>*/}
           </div>
-          <Sidebar sidebar={sidebar} handleSidebar={handleSidebar}/>
         </div>
         </>
     )

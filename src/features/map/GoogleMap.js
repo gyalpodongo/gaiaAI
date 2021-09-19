@@ -58,6 +58,7 @@ const MapContainer = ({ array, isAdding }) => {
         // This is checking to see if the Geoeode Status is OK before proceeding
         if (status == window.google.maps.GeocoderStatus.OK) {
             try{
+            setSelected(true);
             console.log(results);
             var address = (results[0].formatted_address);
             let state = results[0].address_components[5].short_name
@@ -66,7 +67,8 @@ const MapContainer = ({ array, isAdding }) => {
             let short_county = county.substring(0,county.lastIndexOf(" "));
             console.log(short_county)
             setCurrentAdress({"state":state,"county":short_county});
-            setSelected(true);
+            
+            console.log(selected);
             }
             catch(e){
                 alert("not valid input click a place in the US");
