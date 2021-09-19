@@ -1,0 +1,143 @@
+.flex-fill {
+    flex: 1 1 auto;
+  }
+  
+.honestBgColor {
+  background-color: #008080;
+  color: aliceblue;
+}
+.footer {
+  padding: 0.5rem;
+  background-color: #e4e4e4;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6%;
+}
+
+.bottomLink {
+  color: gray;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.bar {
+  color: white;
+  margin-top:1%;
+  margin-left:1%
+}
+.navbar {
+  height: 60px;
+}
+
+.signout {
+  position: absolute;
+  top: 12px;
+  right: 9px;
+  display: flex;
+  background-color: #008080;
+}
+.settingsIcon {
+  height: 50px;
+  width: 50px;
+}
+.signout-icon {
+  margin: auto;
+  margin-right: 0px;
+  color: #ddfaff;
+}
+
+.btn-primary {
+  background-color: #008080 !important;
+  border-color: #008080 !important;
+  box-shadow: #008080 !important;
+}
+
+.icon{
+  margin-top:-7px;
+  padding-left: 1.2%;
+}
+
+.icons {
+  color: #008080;
+  background-color: #008080;
+}
+.buttonTags {
+  float:left;
+}
+
+.menu-bars {
+  font-size: 2rem;
+}
+
+.nav-menu {
+  background-color: #008080;
+  width: 240px;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transition: 1050ms;
+}
+
+.nav-menu.active {
+  left: -1%;
+  transition: 350ms;
+  position: absolute;
+  z-index: 100;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  height: 60px;
+  list-style:none;
+  
+}
+.nav-title {
+  display: flex;
+  justify-content: start;
+  height: 30px;
+  list-style:none;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px; 
+  list-style:none;
+}
+
+.nav-menu-items {
+  width: 100%;
+  padding-right:14%;
+  list-style:none;
+}
+
+.navbar-toggle {
+  background-color: #008080;
+  border-color:white;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  list-style:none;
+}
+
+.barspan {
+  margin-left: 16px;
+}
+hr{
+  display:flex;
+  background-color: white;
+  width: 100%;
+}
+.amplifysignout{
+  height:10%
+}

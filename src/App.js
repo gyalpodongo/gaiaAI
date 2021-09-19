@@ -1,10 +1,13 @@
 import React from 'react';
-import {Navbar,Nav, Container, Button, NavDropdown} from "react-bootstrap"
 import MapChart from "./features/map/MapChart"
+import Navbar from "./features/bar/Navbar"
+import About from "./features/about/About"
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 import './App.css';
 import MapContainer from './features/map/GoogleMap';
 function App() {
   return (
+<<<<<<< HEAD
     <div className="App">
       <header>
         <h1>
@@ -17,10 +20,29 @@ function App() {
         <MapChart></MapChart>
         <MapContainer></MapContainer>
       </body>
+=======
+    <React.Fragment>
+      
+      
+        <Router>
+          <Navbar />
+          <div className="App">
+          <Switch>
+              <Route path="/" exact>
+                  <About />
+              </Route>
+              <Route path="/map" exact>
+                  <MapChart />
+              </Route>
+          </Switch>
+          </div>
+        </Router>
+>>>>>>> 13ed2845c5f6804bf62b99792943bfe757d24396
       <footer>
 
       </footer>
-    </div>
+    
+    </React.Fragment>
   );
 }
 

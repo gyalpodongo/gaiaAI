@@ -1,0 +1,6 @@
+applications:
+  - name: Gaia AI
+    buildpacks:
+      - staticfile_buildpack
+    instances: 1
+    memory: 64M
