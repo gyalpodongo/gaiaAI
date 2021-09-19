@@ -12,13 +12,13 @@ const Navbar = () => {
     return(
         <>
         <div className="navbar honestBgColor">
-            <div>
+            {/*<div>
                 <a href="#" className="menu-bars">
                     <FaIcons.FaBars className="bar" size={25} onClick={handleSidebar}/>
                 </a>
                 
-            </div>
-            <div className="signout">
+            </div>*/}
+            <div className="menu-bars">
                 <Link to="/map">Map</Link>
             {/*<Dropdown className={"signout-icon"}>
               <Dropdown.Toggle
