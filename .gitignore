@@ -22,6 +22,7 @@
 *.zip
 *.tar.gz
 *.rar
+/build/
 
 local.env
 
