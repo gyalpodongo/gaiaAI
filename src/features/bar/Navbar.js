@@ -4,7 +4,6 @@ import _ from "lodash";
 import {Dropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
 import "./Navbar.css"
-import Sidebar from "./Sidebar";
 
 const Navbar = () => {
     const [sidebar,setSidebar] = useState(false);
@@ -55,7 +54,6 @@ const Navbar = () => {
 
             </Dropdown>*/}
           </div>
-          <Sidebar sidebar={sidebar} handleSidebar={handleSidebar}/>
         </div>
         </>
     )
