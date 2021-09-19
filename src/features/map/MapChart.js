@@ -26,7 +26,9 @@ const offsets = {
 
 const MapChart = () => {
   return (
-    <ComposableMap projection="geoAlbersUsa">
+    <div>
+      <p>Select where you would like to plant crops</p>
+    <ComposableMap projection="geoAlbersUsa" width={1500} height={500}>
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>
@@ -70,6 +72,7 @@ const MapChart = () => {
         )}
       </Geographies>
     </ComposableMap>
+    </div>
   );
 };
 
